@@ -1,0 +1,36 @@
+.navbar {
+  height: 100px;
+  position: relative;
+  overflow: visible;
+  z-index: 2;
+
+  .wrapper {
+    max-width: 1366px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+
+    span {
+      font-weight: bold;
+    }
+
+    .social {
+      display: flex;
+      gap: 20px;
+
+      img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+
+      .linkedin-logo {
+        width: 27px;
+        height: 25px;
+        object-fit: contain;
+      }
+    }
+  }
+}
