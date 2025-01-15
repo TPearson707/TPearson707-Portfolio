@@ -1,5 +1,7 @@
 import "./contact.scss"
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const variants={
     initial:{
@@ -18,39 +20,85 @@ const variants={
 }
 
 const Contact = () => {
-    return (
-        <motion.div className="contact" variants={variants}>
-            <motion.div className="textContainer">
-                <h1>Let's work together</h1>
+    const ref = useRef();
+    const formRef = useRef();
+    const [error,setError]= useState(false);
+    const [success, setSuccess] = useState(false);
 
-                <div className="item">
+    const isInView = useInView(ref, {margin: "-100px"});
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+    
+        emailjs
+          .sendForm('service_btmct75', 'template_j1ysu6x', formRef.current, {
+            publicKey: 'iImZKuIzTPWAHTyfA',
+          })
+          .then(
+            () => {
+              setSuccess(true)
+            },
+            (error) => {
+              setError(true)
+              console.log(error.text)
+            },
+          );
+      };
+
+    return (
+        <motion.div className="contact" variants={variants} initial="initial" whileInView="animate">
+            <motion.div className="textContainer" variants={variants}>
+                <motion.h1 variants={variants}>Let's work together</motion.h1>
+
+                <motion.div className="item">
                     <h2>Mail</h2>
                     <span>pearson.e.thomas@gmail.com</span>
-                </div>
+                </motion.div>
 
-                <div className="item">
+                <motion.div className="item">
                     <h2>Addresses</h2>
                     <span>Hebron, MD</span>
                     <br></br>
                     <span>Philadelphia, PA</span>
-                </div>
+                </motion.div>
 
-                <div className="item">
+                <motion.div className="item">
                     <h2>Phone</h2>
                     <span>443-509-0020</span>
-                </div>
+                </motion.div>
 
             </motion.div>
 
             <div className="formContainer">
-                <form>
-                    <input type="text" required placeholder="Name" />
-                    <input type="text" required placeholder="Email" />
-                    <textarea rows={8} placeholder="Message" />
-                    <button>Submit</button>
-                </form>
-            </div>
 
+            <motion.div 
+                className="phoneSvg" 
+                initial={{opacity:1}} 
+                whileInView={{opacity:0}} 
+                transition={{delay: 2, duration: 1}}
+            >
+
+            {/* Need to put an svg here for animations */}
+    
+            </motion.div>
+
+                <motion.form
+                    ref={formRef} 
+                    onSubmit={sendEmail} 
+                    initial={{opacity:0}} 
+                    whileInView={{opacity:1}} 
+                    transition={{delay: 2, duration: 1}}
+                    >
+                
+                    
+                    <input type="text" required placeholder="Name" name="name"/>
+                    <input type="text" required placeholder="Email" name="email"/>
+                    <textarea rows={8} placeholder="Message" name="message"/>
+                    <button>Submit</button>
+                    {error && "Error"}
+                    {success && "Success"}
+                </motion.form>
+            </div>
         </motion.div>
     )
 }
