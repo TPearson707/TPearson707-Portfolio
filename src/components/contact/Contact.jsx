@@ -75,7 +75,7 @@ const Contact = () => {
                 className="phoneSvg" 
                 initial={{opacity:1}} 
                 whileInView={{opacity:0}} 
-                transition={{delay: 2, duration: 1}}
+                transition={{delay: 0, duration: 0}}
             >
 
             {/* Need to put an svg here for animations */}
@@ -87,7 +87,7 @@ const Contact = () => {
                     onSubmit={sendEmail} 
                     initial={{opacity:0}} 
                     whileInView={{opacity:1}} 
-                    transition={{delay: 2, duration: 1}}
+                    transition={{delay: 1, duration: 2}}
                     >
                 
                     
