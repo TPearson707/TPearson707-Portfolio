@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://tpearson707.github.io/TPearson707-Portfolio/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
