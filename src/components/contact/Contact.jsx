@@ -62,10 +62,10 @@ const Contact = () => {
                     <span>Philadelphia, PA</span>
                 </motion.div>
 
-                <motion.div className="item">
+                {/*<motion.div className="item">
                     <h2>Phone</h2>
                     <span>443-509-0020</span>
-                </motion.div>
+                </motion.div>*/}
 
             </motion.div>
 
